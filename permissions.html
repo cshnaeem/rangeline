@@ -1,0 +1,577 @@
+<!DOCTYPE html><html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Rangeline Quote App</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="css/vendors/flatpickr.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <link rel="shortcut icon" href="images/favicon.png" />
+</head> 
+
+<body class="gs bs hi g_" :class="{ 'sidebar-expanded': sidebarExpanded }" x-data="{ sidebarOpen: true, sidebarExpanded: localStorage.getItem('sidebar-expanded') == 'true' }" x-init="$watch('sidebarExpanded', value => localStorage.setItem('sidebar-expanded', value))">
+
+    <script>
+        if (localStorage.getItem('sidebar-expanded') == 'true') {
+            document.querySelector('body').classList.add('sidebar-expanded');
+        } else {
+            document.querySelector('body').classList.remove('sidebar-expanded');
+        }
+    </script>
+
+    <!-- Page wrapper -->
+    <div class="flex ss la">
+
+        <!-- Sidebar -->
+        <div>
+            <!-- Sidebar backdrop (mobile only) -->
+            <div class="m w bg-slate-900 pu tb tex ted bz wr" :class="sidebarOpen ? 'ba' : 'opacity-0 pointer-events-none'" aria-hidden="true" x-cloak=""></div>
+
+            <!-- Sidebar -->
+            <div id="sidebar" class="flex ak g tb x k tea tec teh tts ss lp tth l or tej ttz 2xl:!w-64 ub hs dw we wr wu" :class="sidebarOpen ? 'translate-x-0' : '-translate-x-64'" @click.outside="sidebarOpen = false" @keydown.escape.window="sidebarOpen = false" x-cloak="lg">
+
+                <!-- Sidebar header -->
+                <div class="flex fe nx vq j_">
+                    <!-- Close button -->
+                    <button class="tex text-slate-500 xl" @click.stop="sidebarOpen = !sidebarOpen" aria-controls="sidebar" :aria-expanded="sidebarOpen">
+                        <span class="d">Close sidebar</span>
+                        <svg class="oi so du" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.7 18.7l1.4-1.4L7.8 13H20v-2H7.8l4.3-4.3-1.4-1.4L4 12z"></path>
+                        </svg>
+                    </button>
+                    <!-- Logo -->
+                    <a class="block" href="index.html">
+                        <img src="images/logo.png" alt="logo">
+                    </a>
+                </div>
+
+                <!-- Links -->
+                <div class="ff">
+                    <!-- Pages group -->
+                    <div>
+                        <h3 class="go gv text-slate-500 gh vz">
+                            <span class="hidden tey ttq 2xl:hidden gn oi" aria-hidden="true">•••</span>
+                            <span class="tex ttj 2xl:block">Menu</span>
+                        </h3>
+                        <ul class="nk">
+                            <!-- Dashboard -->
+                            <li class="vn vr rounded-sm n_ ww bg-slate-900" x-data="{ open: true }">
+                                <a class="block gj ld wt wi" href="dashboard.html" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
+                                    <div class="flex items-center fe">
+                                        <div class="flex items-center">
+                                            <svg class="ub so oi" viewBox="0 0 24 24">
+                                                <path class="du text-indigo-500" d="M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0z"></path>
+                                                <path class="du text-indigo-600" d="M12 3c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9z"></path>
+                                                <path class="du text-indigo-200" d="M12 15c-1.654 0-3-1.346-3-3 0-.462.113-.894.3-1.285L6 6l4.714 3.301A2.973 2.973 0 0112 9c1.654 0 3 1.346 3 3s-1.346 3-3 3z"></path>
+                                            </svg>
+                                            <span class="text-sm gp ml-3 ttw tnn 2xl:opacity--100 wr">Dashboard</span>
+                                        </div>
+                                    </div>
+                                </a>
+                        
+                            </li>
+
+                              <!-- Settings -->
+                            <li class="vn vr rounded-sm n_ ww" x-data="{ open: false }">
+                                <a class="block gj xc ld wt wi" href="#0" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
+                                    <div class="flex items-center fe">
+                                        <div class="flex items-center">
+                                            <svg class="ub so oi" viewBox="0 0 24 24">
+                                                <path class="du g_" d="M19.714 14.7l-7.007 7.007-1.414-1.414 7.007-7.007c-.195-.4-.298-.84-.3-1.286a3 3 0 113 3 2.969 2.969 0 01-1.286-.3z"></path>
+                                                <path class="du gq" d="M10.714 18.3c.4-.195.84-.298 1.286-.3a3 3 0 11-3 3c.002-.446.105-.885.3-1.286l-6.007-6.007 1.414-1.414 6.007 6.007z"></path>
+                                                <path class="du g_" d="M5.7 10.714c.195.4.298.84.3 1.286a3 3 0 11-3-3c.446.002.885.105 1.286.3l7.007-7.007 1.414 1.414L5.7 10.714z"></path>
+                                                <path class="du gq" d="M19.707 9.292a3.012 3.012 0 00-1.415 1.415L13.286 5.7c-.4.195-.84.298-1.286.3a3 3 0 113-3 2.969 2.969 0 01-.3 1.286l5.007 5.006z"></path>
+                                            </svg>
+                                            <span class="text-sm gp ml-3 ttw tnn 2xl:opacity--100 wr">Setup</span>
+                                        </div>
+                                        <!-- Icon -->
+                                        <div class="flex ub nq ttw tnn 2xl:opacity--100 wr">
+                                            <svg class="w-3 h-3 ub nz du gq" :class="open ? 'as' : 'ao'" viewBox="0 0 12 12">
+                                                <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="tex ttj 2xl:block">
+                                    <ul class="me re hidden" :class="open ? '!block' : 'hidden'">
+                                        <li class="rt ww">
+                                            <a class="block gq hover--text-slate-200 wt wi ld" href="salesperson.html">
+                                                <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Sales Person</span>
+                                            </a>
+                                        </li>
+                                        <li class="rt ww">
+                                            <a class="block gq hover--text-slate-200 wt wi ld" href="customer.html">
+                                                <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Customer/Company</span>
+                                            </a>
+                                        </li>
+                                        <li class="rt ww">
+                                            <a class="block gq hover--text-slate-200 wt wi ld" href="worktype.html">
+                                                <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Office Work Type</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            
+                             <li class="vn vr rounded-sm n_ ww" x-data="{ open: false }">
+                                <a class="block gj xc ld wt wi" href="quotes.html" >
+                                    <div class="flex items-center fe">
+                                        <div class="flex items-center">
+                                            <svg class="ub so oi" viewBox="0 0 24 24">
+                                                <path class="du gq" d="M13 6.068a6.035 6.035 0 0 1 4.932 4.933H24c-.486-5.846-5.154-10.515-11-11v6.067Z"></path>
+                                                <path class="du gz" d="M18.007 13c-.474 2.833-2.919 5-5.864 5a5.888 5.888 0 0 1-3.694-1.304L4 20.731C6.131 22.752 8.992 24 12.143 24c6.232 0 11.35-4.851 11.857-11h-5.993Z"></path>
+                                                <path class="du g_" d="M6.939 15.007A5.861 5.861 0 0 1 6 11.829c0-2.937 2.167-5.376 5-5.85V0C4.85.507 0 5.614 0 11.83c0 2.695.922 5.174 2.456 7.17l4.483-3.993Z"></path>
+                                            </svg>
+                                            <span class="text-sm gp ml-3 ttw tnn 2xl:opacity--100 wr">Quote Management</span>
+                                        </div>
+                                        
+                                    </div>
+                                </a>
+                               
+                            </li>
+
+                            <li class="vn vr rounded-sm n_ ww" x-data="{ open: false }">
+                                <a class="block gj xc ld wt wi" href="jobs.html" >
+                                    <div class="flex items-center fe">
+                                        <div class="flex items-center">
+                                            <svg class="ub so oi" viewBox="0 0 24 24">
+                                                <path class="du g_" d="M18.974 8H22a2 2 0 012 2v6h-2v5a1 1 0 01-1 1h-2a1 1 0 01-1-1v-5h-2v-6a2 2 0 012-2h.974zM20 7a2 2 0 11-.001-3.999A2 2 0 0120 7zM2.974 8H6a2 2 0 012 2v6H6v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5H0v-6a2 2 0 012-2h.974zM4 7a2 2 0 11-.001-3.999A2 2 0 014 7z"></path>
+                                                <path class="du gq" d="M12 6a3 3 0 110-6 3 3 0 010 6zm2 18h-4a1 1 0 01-1-1v-6H6v-6a3 3 0 013-3h6a3 3 0 013 3v6h-3v6a1 1 0 01-1 1z"></path>
+                                            </svg>
+                                            <span class="text-sm gp ml-3 ttw tnn 2xl:opacity--100 wr">Jobs Management</span>
+                                        </div>
+                                        
+                                    </div>
+                                </a>
+                               
+                            </li>
+                           
+                             <li class="vn vr rounded-sm n_ ww" x-data="{ open: false }">
+                                <a class="block gj xc ld wt wi" href="#0" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
+                                    <div class="flex items-center fe">
+                                        <div class="flex items-center">
+                                            <svg class="ub so oi" viewBox="0 0 24 24">
+                                                <path class="du g_" d="M8 1v2H3v19h18V3h-5V1h7v23H1V1z"></path>
+                                                <path class="du g_" d="M1 1h22v23H1z"></path>
+                                                <path class="du gq" d="M15 10.586L16.414 12 11 17.414 7.586 14 9 12.586l2 2zM5 0h14v4H5z"></path>
+                                            </svg>
+                                            <span class="text-sm gp ml-3 ttw tnn 2xl:opacity--100 wr">Reports</span>
+                                        </div>
+                                        <!-- Icon -->
+                                        <div class="flex ub nq ttw tnn 2xl:opacity--100 wr">
+                                            <svg class="w-3 h-3 ub nz du gq" :class="open ? 'as' : 'ao'" viewBox="0 0 12 12">
+                                                <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="tex ttj 2xl:block">
+                                    <ul class="me re hidden" :class="open ? '!block' : 'hidden'">
+                                        <li class="rt ww">
+                                            <a class="block gq hover--text-slate-200 wt wi ld" href="quoterep.html">
+                                                <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Quotation History</span>
+                                            </a>
+                                        </li>
+                                        <li class="rt ww">
+                                            <a class="block gq hover--text-slate-200 wt wi ld" href="jobsrep.html">
+                                                <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Jobs History</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                             <!-- Authentication -->
+                             <li class="vn vr rounded-sm n_ ww" x-data="{ open: false }">
+                                <a class="block gj xc wt wi" :class="open &amp;&amp; 'hover--text-slate-200'" href="#0" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
+                                    <div class="flex items-center fe">
+                                        <div class="flex items-center">
+                                            <svg class="ub so oi" viewBox="0 0 24 24">
+                                                <path class="du g_" d="M8.07 16H10V8H8.07a8 8 0 110 8z"></path>
+                                                <path class="du gq" d="M15 12L8 6v5H0v2h8v5z"></path>
+                                            </svg>
+                                            <span class="text-sm gp ml-3 ttw tnn 2xl:opacity--100 wr">Security</span>
+                                        </div>
+                                        <!-- Icon -->
+                                        <div class="flex ub nq ttw tnn 2xl:opacity--100 wr">
+                                            <svg class="w-3 h-3 ub nz du gq" :class="open ? 'as' : 'ao'" viewBox="0 0 12 12">
+                                                <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="tex ttj 2xl:block">
+                                    <ul class="me re hidden" :class="open ? '!block' : 'hidden'">
+                                        <li class="rt ww">
+                                            <a class="block gq hover--text-slate-200 wt wi ld" href="users.html">
+                                                <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Users</span>
+                                            </a>
+                                        </li>
+                                        <li class="rt ww">
+                                            <a class="block gq hover--text-slate-200 wt wi ld" href="role.html">
+                                                <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Roles</span>
+                                            </a>
+                                        </li>
+                                        <li class="rt ww">
+                                            <a class="block gq hover--text-slate-200 wt wi ld" href="permissions.html">
+                                                <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Permissions</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                  
+                </div>
+
+                <!-- Expand / collapse button -->
+                <div class="mt hidden tew 2xl:hidden justify-end rn">
+                    <div class="vn vr">
+                        <button @click="sidebarExpanded = !sidebarExpanded">
+                            <span class="d">Expand / collapse sidebar</span>
+                            <svg class="oi so du _o" viewBox="0 0 24 24">
+                                <path class="gq" d="M19.586 11l-5-5L16 4.586 23.414 12 16 19.414 14.586 18l5-5H7v-2z"></path>
+                                <path class="g_" d="M3 23H1V1h2z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Content area -->
+        <div class="y flex ak ug ll lc">
+
+            <!-- Site header -->
+            <header class="b k bg-white cs border-slate-200 tw">
+                <div class="vs jj ttm">
+                    <div class="flex items-center fe sa rr">
+
+                        <!-- Header: Left side -->
+                        <div class="flex">
+                            <!-- Hamburger button -->
+                            <button class="text-slate-500 hover--text-slate-600 tex" @click.stop="sidebarOpen = !sidebarOpen" aria-controls="sidebar" :aria-expanded="sidebarOpen">
+                                <span class="d">Open sidebar</span>
+                                <svg class="oi so du" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="4" y="5" width="16" height="2"></rect>
+                                    <rect x="4" y="11" width="16" height="2"></rect>
+                                    <rect x="4" y="17" width="16" height="2"></rect>
+                                </svg>
+                            </button>
+
+                        </div>
+
+                        <!-- Header: Right side -->
+                        <div class="flex items-center fl">
+
+                            <!-- Search button -->
+                            <div x-data="{ searchOpen: false }">
+                                <!-- Button -->
+                                <button class="os sf flex items-center justify-center hi xt wt wi rounded-full" :class="{ 'hu': searchOpen }" @click.prevent="searchOpen = true;if (searchOpen) $nextTick(()=>{$refs.searchInput.focus()});" aria-controls="search-modal">
+                                    <span class="d">Search</span>
+                                    <svg class="oo sl" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                                        <path class="du text-slate-500" d="M7 14c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zM7 2C4.243 2 2 4.243 2 7s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5z"></path>
+                                        <path class="du gq" d="M15.707 14.293L13.314 11.9a8.019 8.019 0 01-1.414 1.414l2.393 2.393a.997.997 0 001.414 0 .999.999 0 000-1.414z"></path>
+                                    </svg>
+                                </button>
+                                <!-- Modal backdrop -->
+                                <div class="m w bg-slate-900 pu tx bz" x-show="searchOpen" x-transition:enter="wt wa wr" x-transition:enter-start="opacity-0" x-transition:enter-end="ba" x-transition:leave="wt wa ws" x-transition:leave-start="ba" x-transition:leave-end="opacity-0" aria-hidden="true" x-cloak=""></div>
+                                <!-- Modal dialog -->
+                                <div id="search-modal" class="m w tx la flex aj _ ri justify-center vs jj" role="dialog" aria-modal="true" x-show="searchOpen" x-transition:enter="wt wu wr" x-transition:enter-start="opacity-0 u_" x-transition:enter-end="ba uj" x-transition:leave="wt wu wr" x-transition:leave-start="ba uj" x-transition:leave-end="opacity-0 u_" x-cloak="">
+                                    <div class="bg-white lu ua ou oe rounded bd" @click.outside="searchOpen = false" @keydown.escape.window="searchOpen = false">   
+                                        <!-- Search form -->
+                                        <form class="cs border-slate-200">
+                                            <div class="y">
+                                                <label for="modal-search" class="d">Search</label>
+                                                <input id="modal-search" class="ou cn kf bo av vo mn mr" type="search" placeholder="Search Anything…" x-ref="searchInput">
+                                                <button class="g w j kk" type="submit" aria-label="Search">
+                                                    <svg class="oo sl ub du gq kj rs mr-2" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M7 14c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zM7 2C4.243 2 2 4.243 2 7s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5z"></path>
+                                                        <path d="M15.707 14.293L13.314 11.9a8.019 8.019 0 01-1.414 1.414l2.393 2.393a.997.997 0 001.414 0 .999.999 0 000-1.414z"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </form>
+                                        <div class="vu vi">
+                                            <!-- Recent searches -->
+                                            <div class="ro ww">
+                                                <div class="go gh gq gv vi ru">Recent searches</div>
+                                                <ul class="text-sm">
+                                                    <li>
+                                                        <a class="flex items-center dx text-slate-800 xc xn rounded kk" href="#0" @click="searchOpen = false" @focus="searchOpen = true" @focusout="searchOpen = false">
+                                                            <svg class="oo sl du gq kq _t ub ra" viewBox="0 0 16 16">
+                                                                <path d="M15.707 14.293v.001a1 1 0 01-1.414 1.414L11.185 12.6A6.935 6.935 0 017 14a7.016 7.016 0 01-5.173-2.308l-1.537 1.3L0 8l4.873 1.12-1.521 1.285a4.971 4.971 0 008.59-2.835l1.979.454a6.971 6.971 0 01-1.321 3.157l3.107 3.112zM14 6L9.127 4.88l1.521-1.28a4.971 4.971 0 00-8.59 2.83L.084 5.976a6.977 6.977 0 0112.089-3.668l1.537-1.3L14 6z"></path>
+                                                            </svg>
+                                                            <span>RTS22-4053</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="flex items-center dx text-slate-800 xc xn rounded kk" href="#0" @click="searchOpen = false" @focus="searchOpen = true" @focusout="searchOpen = false">
+                                                            <svg class="oo sl du gq kq _t ub ra" viewBox="0 0 16 16">
+                                                                <path d="M15.707 14.293v.001a1 1 0 01-1.414 1.414L11.185 12.6A6.935 6.935 0 017 14a7.016 7.016 0 01-5.173-2.308l-1.537 1.3L0 8l4.873 1.12-1.521 1.285a4.971 4.971 0 008.59-2.835l1.979.454a6.971 6.971 0 01-1.321 3.157l3.107 3.112zM14 6L9.127 4.88l1.521-1.28a4.971 4.971 0 00-8.59 2.83L.084 5.976a6.977 6.977 0 0112.089-3.668l1.537-1.3L14 6z"></path>
+                                                            </svg>
+                                                            <span>RTS22-4054</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="flex items-center dx text-slate-800 xc xn rounded kk" href="#0" @click="searchOpen = false" @focus="searchOpen = true" @focusout="searchOpen = false">
+                                                            <svg class="oo sl du gq kq _t ub ra" viewBox="0 0 16 16">
+                                                                <path d="M15.707 14.293v.001a1 1 0 01-1.414 1.414L11.185 12.6A6.935 6.935 0 017 14a7.016 7.016 0 01-5.173-2.308l-1.537 1.3L0 8l4.873 1.12-1.521 1.285a4.971 4.971 0 008.59-2.835l1.979.454a6.971 6.971 0 01-1.321 3.157l3.107 3.112zM14 6L9.127 4.88l1.521-1.28a4.971 4.971 0 00-8.59 2.83L.084 5.976a6.977 6.977 0 0112.089-3.668l1.537-1.3L14 6z"></path>
+                                                            </svg>
+                                                            <span>RTS22-4055</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="flex items-center dx text-slate-800 xc xn rounded kk" href="#0" @click="searchOpen = false" @focus="searchOpen = true" @focusout="searchOpen = false">
+                                                            <svg class="oo sl du gq kq _t ub ra" viewBox="0 0 16 16">
+                                                                <path d="M15.707 14.293v.001a1 1 0 01-1.414 1.414L11.185 12.6A6.935 6.935 0 017 14a7.016 7.016 0 01-5.173-2.308l-1.537 1.3L0 8l4.873 1.12-1.521 1.285a4.971 4.971 0 008.59-2.835l1.979.454a6.971 6.971 0 01-1.321 3.157l3.107 3.112zM14 6L9.127 4.88l1.521-1.28a4.971 4.971 0 00-8.59 2.83L.084 5.976a6.977 6.977 0 0112.089-3.668l1.537-1.3L14 6z"></path>
+                                                            </svg>
+                                                            <span>RTS22-4056</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="flex items-center dx text-slate-800 xc xn rounded kk" href="#0" @click="searchOpen = false" @focus="searchOpen = true" @focusout="searchOpen = false">
+                                                            <svg class="oo sl du gq kq _t ub ra" viewBox="0 0 16 16">
+                                                                <path d="M15.707 14.293v.001a1 1 0 01-1.414 1.414L11.185 12.6A6.935 6.935 0 017 14a7.016 7.016 0 01-5.173-2.308l-1.537 1.3L0 8l4.873 1.12-1.521 1.285a4.971 4.971 0 008.59-2.835l1.979.454a6.971 6.971 0 01-1.321 3.157l3.107 3.112zM14 6L9.127 4.88l1.521-1.28a4.971 4.971 0 00-8.59 2.83L.084 5.976a6.977 6.977 0 0112.089-3.668l1.537-1.3L14 6z"></path>
+                                                            </svg>
+                                                            <span>RTS22-4064</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="flex items-center dx text-slate-800 xc xn rounded kk" href="#0" @click="searchOpen = false" @focus="searchOpen = true" @focusout="searchOpen = false">
+                                                            <svg class="oo sl du gq kq _t ub ra" viewBox="0 0 16 16">
+                                                                <path d="M15.707 14.293v.001a1 1 0 01-1.414 1.414L11.185 12.6A6.935 6.935 0 017 14a7.016 7.016 0 01-5.173-2.308l-1.537 1.3L0 8l4.873 1.12-1.521 1.285a4.971 4.971 0 008.59-2.835l1.979.454a6.971 6.971 0 01-1.321 3.157l3.107 3.112zM14 6L9.127 4.88l1.521-1.28a4.971 4.971 0 00-8.59 2.83L.084 5.976a6.977 6.977 0 0112.089-3.668l1.537-1.3L14 6z"></path>
+                                                            </svg>
+                                                            <span>RTS22-8591</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                          
+                                        </div>
+                                    </div>
+                                </div>                    
+                            </div>
+
+
+                            <!-- Divider -->
+                            <hr class="of so hu">
+
+                            <!-- User button -->
+                            <div class="y inline-flex" x-data="{ open: false }">
+                                <button class="inline-flex justify-center items-center kk" aria-haspopup="true" @click.prevent="open = !open" :aria-expanded="open">
+                                    <img class="os sf rounded-full" src="images/user-avatar-32.png" width="32" height="32" alt="User">
+                                    <div class="flex items-center ld">
+                                        <span class="ld nq text-sm gp kz">Ryan</span>
+                                        <svg class="w-3 h-3 ub nz du gq" viewBox="0 0 12 12">
+                                            <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z"></path>
+                                        </svg>
+                                    </div>
+                                </button>
+                                <div class="uk tk g z q un bg-white border border-slate-200 va rounded bd la re" @click.outside="open = false" @keydown.escape.window="open = false" x-show="open" x-transition:enter="wt wa wr au" x-transition:enter-start="opacity-0 uq" x-transition:enter-end="ba uj" x-transition:leave="wt wa wr" x-transition:leave-start="ba" x-transition:leave-end="opacity-0" x-cloak="">
+                                    <div class="mu ms vn rt cs border-slate-200">
+                                        <div class="gp text-slate-800">Ryan</div>
+                                        <div class="go text-slate-500 gm">Administrator</div>
+                                    </div>
+                                    <ul>
+                                        <li>
+                                            <a class="gp text-sm text-indigo-500 xh flex items-center vf vn" href="#" @click="open = false" @focus="open = true" @focusout="open = false">Change Password</a>
+                                        </li>
+                                        <li>
+                                            <a class="gp text-sm text-indigo-500 xh flex items-center vf vn" href="index.html" @click="open = false" @focus="open = true" @focusout="open = false">Sign Out</a>
+                                        </li>
+                                    </ul>                
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </header>
+            
+            <main>
+                <div class="vs jj ttm vl ou uf na">
+
+                    <!-- Page header -->
+                    <div class="je jd jc ii">
+
+                        <!-- Left: Title -->
+                        <div class="ri _y">
+                            <h1 class="gu teu text-slate-800 font-bold">Permissions ✨</h1>
+                        </div>
+
+                     
+
+                    </div>
+
+                   
+                    <div class="co border-slate-200">
+
+                        <!-- Components -->
+                        <div class="ff rx">
+
+                            <!-- Appearances -->
+                            <div>
+                                
+                                <h4 class="text-slate-800 gp ri">Select Role to Add/Edit Permissions</h4>
+                                <div class="flex flex-wrap items-center nn">
+                                    <div class="nr">
+                                    <div class="y inline-flex ou nr" x-data="{ open: false, selected: 0 }">
+                                        <button class="btn ou fe un bg-white border-slate-200 hover--border-slate-300 text-slate-500 hover--text-slate-600" aria-label="Select date range" aria-haspopup="true" @click.prevent="open = !open" :aria-expanded="open" aria-expanded="false">
+                                            <span class="flex items-center">
+                                                <span x-text="$refs.options.children[selected].children[0].innerHTML">Most Popular</span>
+                                            </span>
+                                            <svg class="ub nz du gq" width="11" height="7" viewBox="0 0 11 7">
+                                                <path d="M5.4 6.8L0 1.4 1.4 0l4 4 4-4 1.4 1.4z"></path>
+                                            </svg>
+                                        </button>
+                                        <div class="tk g z x ou bg-white border border-slate-200 va rounded bd la re" @click.outside="open = false" @keydown.escape.window="open = false" x-show="open" x-transition:enter="wt wa ws au" x-transition:enter-start="opacity-0 uq" x-transition:enter-end="ba uj" x-transition:leave="wt wa ws" x-transition:leave-start="ba" x-transition:leave-end="opacity-0" style="display: none;">
+                                            <div class="gp text-sm g_ le lr" x-ref="options">
+                                                <button tabindex="0" class="flex items-center fe ou xr vr vn al text-indigo-500" :class="selected === 0 &amp;&amp; 'text-indigo-500'" @click="selected = 0;open = false" @focus="open = true" @focusout="open = false">
+                                                    <span>Administrator</span>
+                                                    <svg class="ub nq du text-indigo-400" :class="selected !== 0 &amp;&amp; 'invisible'" width="12" height="9" viewBox="0 0 12 9">
+                                                        <path d="M10.28.28L3.989 6.575 1.695 4.28A1 1 0 00.28 5.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28.28z"></path>
+                                                    </svg>
+                                                </button>
+                                                <button tabindex="0" class="flex items-center fe ou xr vr vn al" :class="selected === 1 &amp;&amp; 'text-indigo-500'" @click="selected = 1;open = false" @focus="open = true" @focusout="open = false">
+                                                    <span>Sales Person</span>
+                                                    <svg class="ub nq du text-indigo-400 invisible" :class="selected !== 1 &amp;&amp; 'invisible'" width="12" height="9" viewBox="0 0 12 9">
+                                                        <path d="M10.28.28L3.989 6.575 1.695 4.28A1 1 0 00.28 5.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28.28z"></path>
+                                                    </svg>
+                                                </button>
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                    <div class="nr">
+                                        <!-- Start -->
+                                        <button class="btn ho xi ye">Save</button>
+                                        <!-- End -->
+                                    </div>
+                                
+                                </div>
+                            </div>
+
+                            <div class="bg-white bd rounded-sm border border-slate-200 dz ur">
+                                <div class="sn zl tn_ fn">
+                                    <!-- Group 1 -->
+                                    <div>
+                                        <div class="text-sm text-slate-800 gh ro">Setup</div>
+                                        <ul class="fb">
+                                            <li>
+                                                <label class="flex items-center">
+                                                    <input type="checkbox" class="i" >
+                                                    <span class="text-sm g_ gp nq">Sales Person</span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="flex items-center">
+                                                    <input type="checkbox" class="i">
+                                                    <span class="text-sm g_ gp nq">Customer/Company</span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="flex items-center">
+                                                    <input type="checkbox" class="i">
+                                                    <span class="text-sm g_ gp nq">Office Work Type</span>
+                                                </label>
+                                            </li>
+                                         
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm text-slate-800 gh ro">Quote & Jobs</div>
+                                        <ul class="fb">
+                                            <li>
+                                                <label class="flex items-center">
+                                                    <input type="checkbox" class="i" >
+                                                    <span class="text-sm g_ gp nq">Quote Management</span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="flex items-center">
+                                                    <input type="checkbox" class="i">
+                                                    <span class="text-sm g_ gp nq">Jobs</span>
+                                                </label>
+                                            </li>
+                                        
+                                         
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm text-slate-800 gh ro">Reports</div>
+                                        <ul class="fb">
+                                            <li>
+                                                <label class="flex items-center">
+                                                    <input type="checkbox" class="i" >
+                                                    <span class="text-sm g_ gp nq">Quote Log</span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="flex items-center">
+                                                    <input type="checkbox" class="i">
+                                                    <span class="text-sm g_ gp nq">Jobs Log</span>
+                                                </label>
+                                            </li>
+                                        
+                                         
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm text-slate-800 gh ro">Security</div>
+                                        <ul class="fb">
+                                            <li>
+                                                <label class="flex items-center">
+                                                    <input type="checkbox" class="i" >
+                                                    <span class="text-sm g_ gp nq">Users</span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="flex items-center">
+                                                    <input type="checkbox" class="i">
+                                                    <span class="text-sm g_ gp nq">Roles</span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="flex items-center">
+                                                    <input type="checkbox" class="i">
+                                                    <span class="text-sm g_ gp nq">Permissions</span>
+                                                </label>
+                                            </li>
+                                        
+                                         
+                                        </ul>
+                                    </div>
+                               
+                                </div>
+                            </div>
+                    
+
+                        </div>
+
+                    </div>
+                
+
+                </div>
+            </main>
+
+        </div>
+
+    </div>
+
+    <script src="js/vendors/alpinejs.min.js" defer=""></script>
+    <script src="js/vendors/chart.js"></script>
+    <script src="js/vendors/moment.js"></script>
+    <script src="js/vendors/chartjs-adapter-moment.js"></script>
+    <script src="js/dashboard-charts.js"></script>
+    <script src="js/vendors/flatpickr.js"></script>
+    <script src="js/flatpickr-init.js"></script>
+
+
+
+
+</html>
